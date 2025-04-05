@@ -35,7 +35,7 @@ Each report includes:
 ---
 
 ## 📁 File Structure
-
+---
 .
 ├── data/
 │   └── TMDB-Small.csv               # Movie dataset
@@ -55,7 +55,7 @@ Each report includes:
 - Python packages:
   ```bash
   pip install pandas matplotlib
-
+``
   ## 📊 Parameters
 
 The report is parameterized with:
@@ -73,7 +73,7 @@ You can generate a report using Quarto with specific parameters:
 
 ```bash
 quarto render parameterized-report.qmd -P genre:comedy -P num_movies:10 --output comedy_10.pdf
-
+```
 
 This will create a file named `comedy_10.pdf` with the top 10 comedy movies.
 
