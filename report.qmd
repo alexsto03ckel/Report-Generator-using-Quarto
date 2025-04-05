@@ -1,0 +1,59 @@
+---
+title: "Top Movies"
+format: pdf
+echo: false
+toc: true
+---
+
+
+```{python}
+#| tags: [parameters]
+
+num_movies = 10
+genre = "comedy"
+```
+
+```{python}
+import pandas as pd
+
+df=pd.read_csv('./data/TMDB-Small.csv')
+df['primary_genre'] = df['genres'].str.split(',').str[0].str.strip().str.lower()
+df_genre = df[df['primary_genre'] == genre]
+
+top_movies = df_genre.sort_values('vote_average', ascending = False).head(num_movies)
+
+```
+
+
+{{< pagebreak >}}
+
+## Ratings Distributions for `{python} genre.capitalize()`
+
+```{python}
+import matplotlib.pyplot as plt
+
+plt.hist(df_genre['vote_average'],bins=10,color='blue',edgecolor='black')
+plt.xlabel('Rating')
+plt.ylabel('Frequency')
+```
+
+
+
+
+
+{{< pagebreak >}}
+# Top Movies in `{python} genre.capitalize()`
+
+
+```{python}
+#| output: asis
+for i in range(num_movies-1,-1,-1):
+    movie = top_movies.iloc[i]
+    url = f"https://image.tmdb.org/t/p/w600_and_h900_bestv2{movie['poster_path']}"
+    print("::: {layout='[[100],[25,-10,65]]'} \n\n")
+    print(f"### Number {i+1} \n\n")
+    print(f"**Title: {movie['title']}** \n\n")
+    print(f"![]({url}) \n\n")
+    print(f"Description: {movie['overview']} \n\n")
+    print("::: \n\n")
+```
