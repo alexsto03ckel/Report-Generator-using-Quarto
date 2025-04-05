@@ -72,7 +72,7 @@ These parameters can be set at the top of the `.qmd` file or passed directly via
 You can generate a report using Quarto with specific parameters:
 
 ```bash
-quarto render parameterized-report.qmd -P genre:comedy -P num_movies:10 --output comedy_10.pdf
+quarto render report.qmd -P genre:action -P num_movies:10 --output comedy_10.pdf
 ```
 
 This will create a file named `comedy_10.pdf` with the top 10 comedy movies.
